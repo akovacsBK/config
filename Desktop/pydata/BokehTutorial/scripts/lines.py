@@ -32,6 +32,14 @@ line(arch_x, arch_y, color="red", line_width=2,
      title="Archimean", legend="Archimedean")
 
 # EXERCISE: reproduce the above plot for one of the other spirals
+line(lituus_x, lituus_y, color="blue", line_width=2,
+     title="Littus", legend="Littus")
+
+line(golden_x, golden_y, color="green", line_width=2,
+     title="Golden", legend="Golden")
+
+line(fermat_x, fermat_y, color="orange", line_width=2,
+     title="Fermat", legend="Fermat")
 
 # Let's try to put all lines on one plot for comparison. First we need to
 # turn on `hold` so that each renderer does not create a brand new plot
@@ -43,14 +51,39 @@ figure()
 
 # EXERCISE: add all four spirals to one plot, each with different line colors
 # and legend values. NOTE: title only set on the first renderer.
+line(arch_x, arch_y, color="red", line_width=2,
+     title="Archimean", legend="Archimedean")
+
+line(lituus_x, lituus_y, color="blue", line_width=2,
+     legend="Littus")
+
+line(golden_x, golden_y, color="green", line_width=2,
+     legend="Golden")
+
+line(fermat_x, fermat_y, color="orange", line_width=2,
+     legend="Fermat")
 
 # OK, so that doesn't look so good because Bokeh tried to autoscale to
 # accomodate all the data. We can use the Range1d object to set the plot range
 # explicitly
 
 # EXERCISE: create a new figure
+figure()
 
 # EXERCISE: add x_range and y_range parameters to the first `line`, to set the
 # range to [-10, 10]. NOTE: Range1d are created like: Range1d(start=0, end-10)
+line(arch_x, arch_y, color="red", line_width=2,
+     title="Archimean", legend="Archimedean",
+     x_range=Range1d(start=10, end=-10),
+     y_range=Range1d(start=10, end=-10))
+
+line(lituus_x, lituus_y, color="blue", line_width=2,
+     legend="Littus")
+
+line(golden_x, golden_y, color="green", line_width=2,
+     legend="Golden")
+
+line(fermat_x, fermat_y, color="orange", line_width=2,
+     legend="Fermat")
 
 show()      # show the plot
