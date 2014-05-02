@@ -6,13 +6,13 @@ from bokeh.objects import Range1d
 
 # NOTE: if you do not have numba installed, comment out this import,
 # and the 'autojit' lines below (the example will run more slowly).
-from numba import autojit
+#from numba import autojit
 
 # These functions generate the Mandelbrot set image. Don't worry if
 # you are not familiar with them. The import thing is just to know
 # that they create a 2D array of numbers that we can colormap.
 
-@autojit
+#@autojit
 def mandel(x, y, max_iters):
     """
     Given the real and imaginary parts of a complex number,
@@ -27,7 +27,7 @@ def mandel(x, y, max_iters):
             return i
     return max_iters
 
-@autojit
+#@autojit
 def create_fractal(min_x, max_x, min_y, max_y, image, iters):
     height = image.shape[0]
     width = image.shape[1]
@@ -54,6 +54,7 @@ img = np.zeros((1024, 1536), dtype = np.uint8)
 create_fractal(min_x, max_x, min_y, max_y, img, 20)
 
 # EXERCISE: output static HTML file
+output_file("image.html")
 
 # EXERCISE: Fill in the missing parameters to use the `image` renderer to
 # display the Mandelbrot image 'img' with the title 'Mandelbrot', colormapped
@@ -63,21 +64,22 @@ create_fractal(min_x, max_x, min_y, max_y, img, 20)
 # NOTE: the `image` renderer can display many images at once, so it takes
 # **lists** of images, coordinates, and palettes. Remember to supply sequences
 # for these parameters, even if you are just supply one.
-image(image=
-      x=                                          # lower left x coord
-      y=                                          # lower left y coord
-      dw=                                         # *data* width of image
-      dh=                                         # *data* height of image
-      palette=                                    # palette to colormap with
+image(image=[img],
+      x=[min_x],                                    # lower left x coord
+      y=[min_y],                                    # lower left y coord
+      dw=[max_x-min_x],                             # *data* width of image
+      dh=[max_y-min_y],                             # *data* height of image
+      palette=['Spectral-11'],                      # palette to colormap with
       x_range = Range1d(start=min_x, end=max_x),  # fix the X range
       y_range = Range1d(start=min_y, end=max_x),  # fix the Y range
-      title=                                      # give the plot a title
+      title='Mandelbrot',                              # give the plot a title
       tools="pan,wheel_zoom,box_zoom,reset",      # add some tools
       plot_width=900,                             # set a width for the plot
       plot_height=600                             # and a height
 )
 
 # EXERCISE: create a new figure
+figure()
 
 # We can also use the `image_rgba` renderer to display RGBA images that
 # we have colormapped ourselves.
