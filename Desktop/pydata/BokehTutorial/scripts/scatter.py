@@ -23,12 +23,15 @@ x3 = 2*f3*np.cos(theta3)
 y3 = 2*f3*np.sin(theta3)
 
 # EXERCISE: output static HTML file
+output_file("scatter.html")
 
 # Create a set of tools to use
 TOOLS="pan,wheel_zoom,box_zoom,reset,previewsave"
 
 # EXERCISE: create two Range1d objects to reuse in the plots. Use the [-20, 20]
 # for the bounds.
+xr=Range1d(start=-20, end=20)
+yr=Range1d(start=-20, end=20)
 
 # EXERCISE: Plot all the sets of points on different plots. Use the ranges above
 # for x_range and y_range. Set different colors as well. Try setting line_color
@@ -39,10 +42,17 @@ TOOLS="pan,wheel_zoom,box_zoom,reset,previewsave"
 scatter(x1, y1, size=12, color="red", alpha=0.5,
         x_range=xr, y_range=yr, tools=TOOLS)
 
+scatter(x2, y2, size=12, color="green", alpha=0.5,
+        x_range=xr, y_range=yr, tools=TOOLS)
+
+scatter(x3, y3, size=12, line_color="black", fill_color="blue", alpha=0.5,
+        x_range=xr, y_range=yr, tools=TOOLS, marker="square")
+
 # EXERCISE: Try panning and zooming one of the plots with another one visible!
 # Set the plot_width and plot_height to smaller if necessary
 
 # EXERCISE: create a new figure
+figure()
 
 # Lets plot 4000 circles, you can play around with this if you like
 N = 4000
@@ -59,6 +69,7 @@ colors = [
 # 'fill_color' to the colors above, the 'line_color' to None, and the 'radius'
 # to the radii. Also try setting the fill_alpha to something less than one.
 # Use TOOLS from above to set a tools parameter.
+circle(x, y, fill_color=colors, line_color=None, radius=radii)
 
 # NOTE: since we are passing 'radius' as a parameter, the size of the circles
 # is computed in **data** space, not in pixels. If you'd like to specify
