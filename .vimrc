@@ -1,6 +1,18 @@
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => General
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Can't use fish shell with syntastic...
+" https://github.com/scrooloose/syntastic/issues/803
+set shell=bash
+execute pathogen#infect()
+
+let g:syntastic_java_checkers = ['javac']
+let g:syntastic_scala_checkers = ['scalac']
+let g:syntastic_python_checkers = ['pyflakes']
+
+let g:syntastic_enable_signs=1
+let g:syntastic_auto_jump=1
+
 " Sets how many lines of history VIM has to remember
 set history=700
 
